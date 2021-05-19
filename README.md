@@ -1,3 +1,3 @@
 # PyraCoin
 
-Basics of a blockchain and a cryptocoin
+Basics of a blockchain and a cryptocurrency
