@@ -4,12 +4,17 @@
 #include "BlockChain.h"
 #include <Windows.h>
 
+double GetRandomDouble()
+{
+    static std::uniform_real_distribution<double> unif(1, 99999);
+    static std::default_random_engine re;
+
+    return unif(re);
+}
+
 int main()
 {
     BlockChain pyraCoin;
-
-    std::uniform_real_distribution<double> unif(1, 99999);
-    std::default_random_engine re;
 
     std::cout << "Press enter to add a block, ESC to exit\n";
 
@@ -19,7 +24,7 @@ int main()
         {
             const std::string sender = "sender" + std::to_string(pyraCoin.GetNextIndex());
             const std::string receiver = "receiver" + std::to_string(pyraCoin.GetNextIndex());
-            const double randomDouble = unif(re);
+            const double randomDouble = GetRandomDouble();
 
             BlockData bd{ sender, receiver, randomDouble };
             pyraCoin.CraftNewBlock(bd);
