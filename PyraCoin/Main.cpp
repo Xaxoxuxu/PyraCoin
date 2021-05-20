@@ -8,7 +8,6 @@ double GetRandomDouble()
 {
     static std::uniform_real_distribution<double> unif(1, 99999);
     static std::default_random_engine re;
-
     return unif(re);
 }
 
@@ -22,12 +21,12 @@ int main()
     {
         if (GetAsyncKeyState(VK_RETURN) & 0x1)
         {
-            const std::string sender = "sender" + std::to_string(pyraCoin.GetNextIndex());
-            const std::string receiver = "receiver" + std::to_string(pyraCoin.GetNextIndex());
+            const std::string sender = "fromAddress";
+            const std::string receiver = "toAddress";
             const double randomDouble = GetRandomDouble();
 
-            BlockData bd{ sender, receiver, randomDouble };
-            pyraCoin.CraftNewBlock(bd);
+            Transaction tr{ sender, receiver, randomDouble };
+            pyraCoin.CraftNewBlock(tr);
 
             // Don't judge, it's for testing
             system("cls");

@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <chrono>
+#include "Transaction.h"
 #include "Block.h"
 
 class BlockChain
@@ -15,8 +16,7 @@ public:
 	BlockChain(const uint32_t difficulty = 1);
 	Block GetLastBlock() const;
     string GetLastBlockHash() const;
-    uint64_t GetNextIndex() const;
-    void CraftNewBlock(const BlockData& newBlockData);
+    void CraftNewBlock(const Transaction& transaction);
     bool IsChainValid();
 
     friend std::ostream& operator<< (std::ostream& out, const BlockChain& blockChain);

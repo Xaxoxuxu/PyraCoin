@@ -7,7 +7,7 @@ BlockChain::BlockChain(const uint32_t difficulty) : difficulty(difficulty)
 
 Block BlockChain::CreateGenesisBlock()
 {
-	return Block(0, 1621411042, { "Genesis", "Genesis", 0.0 }, "Genesis");
+	return Block(1621411042, { "Genesis", "Genesis", 0.0 }, "Genesis");
 }
 
 Block BlockChain::GetLastBlock() const
@@ -20,11 +20,6 @@ string BlockChain::GetLastBlockHash() const
 	return GetLastBlock().GetHash();
 }
 
-uint64_t BlockChain::GetNextIndex() const
-{
-	return GetLastBlock().GetIndex() + 1;
-}
-
 time_t BlockChain::GetCurrentTimeStamp() const
 {
 	const auto clockNow = std::chrono::system_clock::now();
@@ -34,9 +29,9 @@ time_t BlockChain::GetCurrentTimeStamp() const
 	return currentTimeStamp;
 }
 
-void BlockChain::CraftNewBlock(const BlockData& newBlockData)
+void BlockChain::CraftNewBlock(const Transaction& transaction)
 {
-	Block newBlock{ GetNextIndex(), GetCurrentTimeStamp(), newBlockData, GetLastBlockHash() };
+	Block newBlock{ GetCurrentTimeStamp(), transaction, GetLastBlockHash() };
 	newBlock.MineBlock(this->difficulty);
 
 	chain.emplace_back(newBlock);

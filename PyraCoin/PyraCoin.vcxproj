@@ -141,14 +141,14 @@
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="BlockChain.cpp" />
-    <ClCompile Include="BlockData.cpp" />
+    <ClCompile Include="Transaction.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Sha256.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Block.h" />
     <ClInclude Include="BlockChain.h" />
-    <ClInclude Include="BlockData.h" />
+    <ClInclude Include="Transaction.h" />
     <ClInclude Include="Sha256.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

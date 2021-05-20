@@ -24,10 +24,10 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BlockData.cpp">
+    <ClCompile Include="BlockChain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BlockChain.cpp">
+    <ClCompile Include="Transaction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,10 +38,10 @@
     <ClInclude Include="Block.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BlockData.h">
+    <ClInclude Include="BlockChain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BlockChain.h">
+    <ClInclude Include="Transaction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
