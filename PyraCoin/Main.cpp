@@ -14,7 +14,7 @@ double GetRandomDouble()
 
 int main()
 {
-    BlockChain pyraCoin;
+    BlockChain pyraCoin{3};
 
     std::cout << "Press enter to add a block, ESC to exit\n";
 
@@ -37,7 +37,7 @@ int main()
         Sleep(500);
     }
 
-    std::cout << "Is blockchain valid: " << (pyraCoin.IsChainValid() ? "Yes" : "No") << '\n';
+    std::cout << "Is BlockChain valid: " << (pyraCoin.IsChainValid() ? "Yes" : "No") << '\n';
 
     return 0;
 }

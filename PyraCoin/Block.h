@@ -17,7 +17,8 @@ private:
     const time_t timestamp;
     const BlockData data;
     const string previousHash;
-    const string hash;
+    uint64_t nonce;
+    string hash;
 
 public:
     Block(uint64_t index, time_t timestamp, BlockData data, string previousHash);
@@ -27,5 +28,6 @@ public:
     uint64_t GetIndex() const { return index; }
 
     string CalculateHash() const;
+    void MineBlock(const uint32_t difficulty);
     friend std::ostream& operator<< (std::ostream& out, const Block& block);
 };

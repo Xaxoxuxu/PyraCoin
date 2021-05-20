@@ -7,14 +7,15 @@ class BlockChain
 {
 private:
 	std::vector<Block> chain;
+    const uint32_t difficulty;
 
 	static Block CreateGenesisBlock();
+    time_t GetCurrentTimeStamp() const;
 public:
-	BlockChain();
+	BlockChain(const uint32_t difficulty = 1);
 	Block GetLastBlock() const;
     string GetLastBlockHash() const;
     uint64_t GetNextIndex() const;
-    time_t GetCurrentTimeStamp() const;
     void CraftNewBlock(const BlockData& newBlockData);
     bool IsChainValid();
 

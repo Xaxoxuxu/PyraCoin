@@ -1,6 +1,6 @@
 #include "BlockChain.h"
 
-BlockChain::BlockChain()
+BlockChain::BlockChain(const uint32_t difficulty) : difficulty(difficulty)
 {
 	chain.emplace_back(CreateGenesisBlock());
 }
@@ -37,6 +37,7 @@ time_t BlockChain::GetCurrentTimeStamp() const
 void BlockChain::CraftNewBlock(const BlockData& newBlockData)
 {
 	Block newBlock{ GetNextIndex(), GetCurrentTimeStamp(), newBlockData, GetLastBlockHash() };
+	newBlock.MineBlock(this->difficulty);
 
 	chain.emplace_back(newBlock);
 }
@@ -49,8 +50,12 @@ bool BlockChain::IsChainValid()
 		const Block currentBlock = chain[i];
 		const Block previousBlock = chain[i - 1];
 
-        if ((currentBlock.GetHash() != currentBlock.CalculateHash())
-			|| (currentBlock.GetPreviousHash() != previousBlock.CalculateHash()))
+        if (currentBlock.GetHash() != currentBlock.CalculateHash())
+        {
+			return false;
+        }
+
+        if (currentBlock.GetPreviousHash() != previousBlock.CalculateHash())
         {
 			return false;
         }
@@ -61,7 +66,7 @@ bool BlockChain::IsChainValid()
 
 std::ostream& operator<<(std::ostream& out, const BlockChain& blockChain)
 {
-	out << "BlockChain:\n\n";
+	out << "BlockChain (difficulty = " << blockChain.difficulty << "):\n\n";
 	for (const auto &block : blockChain.chain)
 	{
 		out << block << "\n\n";
