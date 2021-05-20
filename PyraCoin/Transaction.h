@@ -4,6 +4,9 @@
 
 using std::string;
 
+/**
+ * \brief TODO: Pass by ref when possibles
+ */
 class Transaction
 {
 private:
@@ -14,8 +17,8 @@ private:
 public:
     Transaction(string fromAddress, string toAddress, double amount);
 
-    string GetSender() const { return fromAddress; }
-    string GetReceiver() const { return toAddress; }
+    string GetFromAddress() const { return fromAddress; }
+    string GetToAddress() const { return toAddress; }
     double GetTransactionAmount() const { return amount; }
 
     friend std::ostream& operator<<(std::ostream& out, const Transaction& transaction);

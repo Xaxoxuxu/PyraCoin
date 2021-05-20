@@ -13,28 +13,26 @@ double GetRandomDouble()
 
 int main()
 {
-    BlockChain pyraCoin{3};
+    BlockChain pyraCoin{ 3 };
 
-    std::cout << "Press enter to add a block, ESC to exit\n";
+    const std::string wallet1 = "one";
+    const std::string wallet2 = "two";
+    const std::string miner = "xaxo";
 
-    while (!(GetAsyncKeyState(VK_ESCAPE) & 0x1))
-    {
-        if (GetAsyncKeyState(VK_RETURN) & 0x1)
-        {
-            const std::string sender = "fromAddress";
-            const std::string receiver = "toAddress";
-            const double randomDouble = GetRandomDouble();
+    std::cout << "xaxo initial money: " << pyraCoin.GetBalanceOfAddress(miner) << '\n';
 
-            Transaction tr{ sender, receiver, randomDouble };
-            pyraCoin.CraftNewBlock(tr);
+    pyraCoin.CreateTransaction({ wallet1, wallet2, 100 });
+    pyraCoin.CreateTransaction({ wallet2, wallet1, 50 });
+    std::cout << "Creating 2 transactions...\n";
+    std::cout << "Mining...\n";
+    pyraCoin.MinePendingTransactions(miner);
 
-            // Don't judge, it's for testing
-            system("cls");
-            std::cout << pyraCoin;
-        }
+    std::cout << pyraCoin;
+    std::cout << "xaxo money after first mine: " << pyraCoin.GetBalanceOfAddress(miner) << '\n';
 
-        Sleep(500);
-    }
+    std::cout << "Mining...\n";
+    pyraCoin.MinePendingTransactions(miner);
+    std::cout << "xaxo money after second mine: " << pyraCoin.GetBalanceOfAddress(miner) << '\n';
 
     std::cout << "Is BlockChain valid: " << (pyraCoin.IsChainValid() ? "Yes" : "No") << '\n';
 
