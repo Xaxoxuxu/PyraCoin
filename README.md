@@ -1,4 +1,4 @@
-<h3 align="center">PyraCoin</h3>
+<h1 align="center">PyraCoin</h1>
 
 ⚠️ *For education purposes only. This is by no means a complete implementation and it is by no means secure!*
 
