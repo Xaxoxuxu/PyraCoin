@@ -37,5 +37,7 @@ int main()
         Sleep(500);
     }
 
+    std::cout << "Is blockchain valid: " << (pyraCoin.IsChainValid() ? "Yes" : "No") << '\n';
+
     return 0;
 }

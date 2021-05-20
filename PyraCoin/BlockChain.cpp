@@ -41,6 +41,24 @@ void BlockChain::CraftNewBlock(const BlockData& newBlockData)
 	chain.emplace_back(newBlock);
 }
 
+bool BlockChain::IsChainValid()
+{
+	// block 0 is genesis
+	for (size_t i = 1; i < chain.size(); i++) 
+	{
+		const Block currentBlock = chain[i];
+		const Block previousBlock = chain[i - 1];
+
+        if ((currentBlock.GetHash() != currentBlock.CalculateHash())
+			|| (currentBlock.GetPreviousHash() != previousBlock.CalculateHash()))
+        {
+			return false;
+        }
+	}
+
+	return true;
+}
+
 std::ostream& operator<<(std::ostream& out, const BlockChain& blockChain)
 {
 	out << "BlockChain:\n\n";

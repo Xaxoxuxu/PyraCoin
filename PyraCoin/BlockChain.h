@@ -16,6 +16,7 @@ public:
     uint64_t GetNextIndex() const;
     time_t GetCurrentTimeStamp() const;
     void CraftNewBlock(const BlockData& newBlockData);
+    bool IsChainValid();
 
     friend std::ostream& operator<< (std::ostream& out, const BlockChain& blockChain);
 };
